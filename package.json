@@ -1,11 +1,11 @@
 {
   "name": "@guygolanil/url-schema-builder",
-  "version": "1.0.6",
+  "version": "1.2.2",
   "description": "",
-  "files": ["dist/**/*"],
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc && copy package.json dist"
   },
   "author": "",
   "license": "ISC",
