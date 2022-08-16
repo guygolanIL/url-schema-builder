@@ -1,5 +1,5 @@
 type SchemaBuilderOptions = {
-	baseUrl: string;
+	baseUrl?: string;
 };
 
 type BuildFn = (searchParams?: SearchParams) => string;
@@ -8,8 +8,8 @@ export type WithBuild<T> = T & { build: BuildFn };
 
 export type SearchParams = { [key: string]: string | undefined };
 
-export const schemaBuilder = function ({ baseUrl }: SchemaBuilderOptions) {
-	let urlPath = [baseUrl];
+export const schemaBuilder = function (options?: SchemaBuilderOptions) {
+	let urlPath = [options?.baseUrl];
 
 	const build: BuildFn = (searchParams?: SearchParams) => {
 
