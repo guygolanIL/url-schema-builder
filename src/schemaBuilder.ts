@@ -9,7 +9,7 @@ export type WithBuild<T> = T & { build: BuildFn };
 export type SearchParams = { [key: string]: string | undefined };
 
 export const schemaBuilder = function (options?: SchemaBuilderOptions) {
-	let urlPath = [options?.baseUrl];
+	const urlPath: Array<string | undefined> = [options ? options.baseUrl : undefined];
 
 	const build: BuildFn = (searchParams?: SearchParams) => {
 
