@@ -64,8 +64,8 @@ export function getTodo(todoId: string) {
 ### Appending query params and hash is easy too
 ```javascript
 // todos-api.ts
-export function getTodosPaginated(pageSize: number, offset: number) {
-    // baseUrl/api/todos?pageSize={pageSize}&offset={offset}
+export function getPaginatedTodos(pageSize: string, offset: string, hash: string) {
+    // baseUrl/api/todos?pageSize={pageSize}&offset={offset}#{hash}
     const getAllTodosPaginatedUrl = 
         urlBuilder()
             .api()
