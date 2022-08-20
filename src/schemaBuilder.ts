@@ -1,8 +1,11 @@
+
+
 type SchemaBuilderOptions = {
 	baseUrl?: string;
 };
 
-type BuildFn = (searchParams?: SearchParams) => string;
+type BuildFnOptions = { query?: SearchParams, hash?: string };
+type BuildFn = (options?: BuildFnOptions) => string;
 type Builder<Param, Return> = (p: Param) => Return;
 export type WithBuild<T> = T & { build: BuildFn };
 
@@ -11,9 +14,12 @@ export type SearchParams = { [key: string]: string | undefined };
 export const schemaBuilder = function (options?: SchemaBuilderOptions) {
 	const urlPath: Array<string | undefined> = [options ? options.baseUrl : undefined];
 
-	const build: BuildFn = (searchParams?: SearchParams) => {
+	const build: BuildFn = (options: BuildFnOptions = {}) => {
 
-		if (!searchParams) return urlPath.join('/');
+		const {
+			query,
+			hash
+		} = options;
 
 		function buildSearchParams(params: SearchParams) {
 			return Object
@@ -23,7 +29,13 @@ export const schemaBuilder = function (options?: SchemaBuilderOptions) {
 				.join('&');
 		}
 
-		return `${urlPath.join('/')}?${buildSearchParams(searchParams)}`;
+		const urlParts: [string, string | undefined, string | undefined] = [
+			urlPath.join('/'),
+			query ? `?${buildSearchParams(query)}` : undefined,
+			hash ? `#${hash}` : undefined
+		];
+
+		return urlParts.join('');
 	};
 
 	function path<Sub>(name: string, next: () => Sub): Builder<void, Sub> {
