@@ -75,7 +75,7 @@ export function getPaginatedTodos(pageSize: string, offset: string, hash: string
                     pageSize,
                     offset    
                 },
-                hash: "firstTodo"
+                hash,
             });
     
     // rest of client implementation
