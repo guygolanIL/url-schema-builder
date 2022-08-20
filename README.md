@@ -1,4 +1,4 @@
-# Used to define your api urls <b>once</b>
+# Define your api urls <b>once</b>
 
 ### Build the routes your client consumes in a type-safe manner
 <br/>
